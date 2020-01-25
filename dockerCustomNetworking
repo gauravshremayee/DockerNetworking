@@ -1,0 +1,34 @@
+# Container can ping each other by name
+
+$ docker network create --driver bridge alpine-net
+
+
+$ docker network ls
+
+$ docker network inspect bridge
+
+
+$ docker run -dit --name alpine1 --network alpine-net alpine ash
+
+$ docker run -dit --name alpine2 --network alpine-net alpine ash
+
+$ docker run -dit --name alpine3 alpine ash
+
+$ docker run -dit --name alpine4 --network alpine-net alpine ash
+
+$ docker network connect bridge alpine4
+
+$ docker container ls
+
+$ docker network inspect alpine-net
+
+$ docker network inspect bridge
+
+
+$ docker container attach alpine1
+
+
+and try to ping alpine2 
+ping alpine2
+
+
